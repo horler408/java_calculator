@@ -72,6 +72,7 @@ public class Calculator extends JFrame implements ActionListener {
         jp3.add(btnCheck);
         
         btnOne = new JButton("1");
+        //btnOne.setActionCommand(btnOne.getText());
         btnTwo = new JButton("2");
         btnThree = new JButton("3");
         btnFour = new JButton("4");
@@ -108,9 +109,17 @@ public class Calculator extends JFrame implements ActionListener {
         jp2.add(btnDivide);
         //jp2.add(btnClr);
         
-        //To Register Listener
+        //To register the button
         btnOne.addActionListener(this);
         btnTwo.addActionListener(this);
+        btnThree.addActionListener(this);
+        btnFour.addActionListener(this);
+        btnFive.addActionListener(this);
+        btnSix.addActionListener(this);
+        btnSeven.addActionListener(this);
+        btnEight.addActionListener(this);
+        btnNine.addActionListener(this);
+        btnZero.addActionListener(this);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(menuBar);
@@ -134,18 +143,8 @@ public class Calculator extends JFrame implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e){
-        String btnOneTxt = txtDisplay.getText() + btnOne.getText();
-        txtDisplay.setText(btnOneTxt);
+        String btnTxt = txtDisplay.getText() + e.getActionCommand();
+        txtDisplay.setText(btnTxt);
     }
     
-    public void btnTwoactionPerformed(ActionEvent e){
-        String btnTwoTxt = txtDisplay.getText() + btnTwo.getText();
-        txtDisplay.setText(btnTwoTxt);
-    }
-    
-    /*btnOne.addActionListener(new ActionListener(){
-           public void actionPerformed(){
-               txtDisplay.setText("1");
-           }
-    });*/
 }
