@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 /**
  *
- * @author AB
+ * @author Dev Abdulazeez
  */
 public class Calculator extends JFrame implements ActionListener {
     JPanel jp1, jp2, jp3;
