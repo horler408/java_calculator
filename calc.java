@@ -1,4 +1,3 @@
-
 package guiexamples;
 
 import java.awt.Color;
@@ -7,9 +6,13 @@ import java.awt.*;
 import java.awt.event.*;
 /**
  *
- * @author Dev Abdulazeez
+ * @author AB
  */
 public class Calculator extends JFrame implements ActionListener {
+    private double total1 = 0.0;
+    private double total2 = 0.0;
+    private char math_operator;
+    
     JPanel jp1, jp2, jp3;
     
     JTextField txtDisplay;
@@ -120,6 +123,13 @@ public class Calculator extends JFrame implements ActionListener {
         btnEight.addActionListener(this);
         btnNine.addActionListener(this);
         btnZero.addActionListener(this);
+        btnPlus.addActionListener(this);
+        btnMinus.addActionListener(this);
+        btnDivide.addActionListener(this);
+        btnTimes.addActionListener(this);
+        btnEqual.addActionListener(this);
+        btnDelete.addActionListener(this);
+        btnClr.addActionListener(this);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(menuBar);
@@ -143,8 +153,49 @@ public class Calculator extends JFrame implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e){
-        String btnTxt = txtDisplay.getText() + e.getActionCommand();
-        txtDisplay.setText(btnTxt);
+        String opt = e.getActionCommand();
+        
+        if(opt.equals(btnOne.getText()) || opt.equals(btnTwo.getText())) {
+            String btnTxt = txtDisplay.getText() + e.getActionCommand();
+            txtDisplay.setText(btnTxt);
+        }
+        else if(opt.equals(btnPlus.getText())){
+            String btnTxt = btnPlus.getText(); 
+            getOperator(btnTxt);
+        }
+        else if(opt.equals(btnEqual.getText())){
+            switch (math_operator) {
+              case '+':
+                  total2 = total1 + Double.parseDouble(txtDisplay.getText());
+                  break;
+              case '-':
+                  total2 = total1 - Double.parseDouble(txtDisplay.getText());
+                  break;
+              case '*':
+                  total2 = total1 * Double.parseDouble(txtDisplay.getText());
+                  break;
+              case '/':
+                  total2 = total1 / Double.parseDouble(txtDisplay.getText());
+                  break;
+            }
+            txtDisplay.setText(Double.toString(total2));
+            total1 = 0;
+        }
+        else if(opt.equals(btnClr.getText())){
+            total2 = 0; 
+            txtDisplay.setText("");
+        }
+    }
+    
+    private void getOperator(String btnText) {
+        math_operator = btnText.charAt(0);
+        total1 = total1 + Double.parseDouble(txtDisplay.getText());
+        //txtDisplay.setText("");
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+       
     }
     
 }
