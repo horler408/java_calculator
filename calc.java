@@ -2,11 +2,10 @@ package guiexamples;
 
 import java.awt.Color;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 /**
  *
- * @author AB
+ * @author Dev Abdulazeez
  */
 public class Calculator extends JFrame implements ActionListener {
     private double total1 = 0.0;
@@ -141,9 +140,6 @@ public class Calculator extends JFrame implements ActionListener {
         setLayout(null);
         setLocation(50, 30);
         
-        //JOptionPane.showConfirmDialog(this, "Do You want to save it",
-                //"Confirmation Message", JOptionPane.YES_NO_CANCEL_OPTION,
-                //JOptionPane.WARNING_MESSAGE);
         
         add(menuBar);
         add(txtDisplay);
@@ -155,14 +151,25 @@ public class Calculator extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String opt = e.getActionCommand();
         
-        if(opt.equals(btnOne.getText()) || opt.equals(btnTwo.getText())) {
+        if(opt.equals(btnPlus.getText()) || opt.equals(btnMinus.getText()) ||
+           opt.equals(btnTimes.getText()) || opt.equals(btnDivide.getText())){
+            
+            String btnTxt = e.getActionCommand(); 
+            math_operator = btnTxt.charAt(0);
+            total1 = total1 + Double.parseDouble(txtDisplay.getText());
+            txtDisplay.setText("");
+        }
+        
+        else if(opt.equals(btnOne.getText()) || opt.equals(btnTwo.getText()) ||
+                opt.equals(btnThree.getText()) || opt.equals(btnFour.getText()) ||
+                opt.equals(btnFive.getText()) || opt.equals(btnSix.getText()) ||
+                opt.equals(btnSeven.getText()) || opt.equals(btnEight.getText()) ||
+                opt.equals(btnNine.getText()) || opt.equals(btnZero.getText())) {
+            
             String btnTxt = txtDisplay.getText() + e.getActionCommand();
             txtDisplay.setText(btnTxt);
         }
-        else if(opt.equals(btnPlus.getText())){
-            String btnTxt = btnPlus.getText(); 
-            getOperator(btnTxt);
-        }
+        
         else if(opt.equals(btnEqual.getText())){
             switch (math_operator) {
               case '+':
@@ -186,16 +193,9 @@ public class Calculator extends JFrame implements ActionListener {
             txtDisplay.setText("");
         }
     }
-    
-    private void getOperator(String btnText) {
-        math_operator = btnText.charAt(0);
-        total1 = total1 + Double.parseDouble(txtDisplay.getText());
-        //txtDisplay.setText("");
-    }
 
     public static void main(String[] args) {
-        Calculator calc = new Calculator();
-       
+        Calculator calc = new Calculator();  
     }
     
 }
